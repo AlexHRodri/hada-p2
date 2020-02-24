@@ -100,6 +100,21 @@ namespace Hada
             this.combustible = combustible;
         }
 
+        public void incVelocidad()
+        {
+            this.velocidad = this.velocidad + rand.Next(1, 8);
+        }
+
+        public void incTemperatura()
+        {
+            this.temperatura = this.temperatura + rand.Next(1, 6);
+        }
+        
+        public void decCombustible()
+        {
+            this.combustible = this.combustible - rand.Next(1, 6);
+        }
+
 
 
 
