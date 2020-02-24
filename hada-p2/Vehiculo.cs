@@ -11,7 +11,7 @@ namespace Hada
         public static int maxVelocidad { get; set; }
         public static int maxTemperatura { get; set; }
         public static int minCombustible { get; set; }
-        
+
         public static Random rand { private get; set; }
 
         public string nombre { get; private set; }
@@ -25,9 +25,9 @@ namespace Hada
 
             set
             {
-                if(value > maxVelocidad || value < 0)
+                if (value > maxVelocidad || value < 0)
                 {
-                    if(value > maxVelocidad)
+                    if (value > maxVelocidad)
                     {
 
                     }
@@ -70,9 +70,9 @@ namespace Hada
 
             set
             {
-                if(value < minCombustible || value < 0 || value > 100)
+                if (value < minCombustible || value < 0 || value > 100)
                 {
-                    if(value < minCombustible)
+                    if (value < minCombustible)
                     {
 
                     }
@@ -91,6 +91,16 @@ namespace Hada
                 }
             }
         }
+
+        public Vehiculo(string nombre, int velocidad, int temperatura, int combustible)
+        {
+            this.nombre = nombre;
+            this.velocidad = velocidad;
+            this.temperatura = temperatura;
+            this.combustible = combustible;
+        }
+
+
 
 
 
