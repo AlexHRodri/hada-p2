@@ -8,6 +8,13 @@ namespace Hada
 {
     class Vehiculo
     {
+
+        public event EventHandler<VelocidadMaximaExcedidaArgs> velocidadMaximaExcedida;
+
+        public event EventHandler<TemperaturaMaximaExcedidaArgs> temperaturaMaximaExcedida;
+
+        public event EventHandler<CombustibleMinimoExcedidoArgs> combustibleMinimoExcedido;
+
         public static int maxVelocidad { get; set; }
         public static int maxTemperatura { get; set; }
         public static int minCombustible { get; set; }
@@ -92,21 +99,13 @@ namespace Hada
             }
         }
 
-        public event EventHandler<VelocidadMaximaExcedidaArgs> velocidadMaximaExcedida;
-
-        public event EventHandler<TemperaturaMaximaExcedidaArgs> temperaturaMaximaExcedida;
-
-        public event EventHandler<CombustibleMinimoExcedidoArgs> combustibleMinimoExcedido;
-
         public Vehiculo(string nombre, int velocidad, int temperatura, int combustible)
         {
             this.nombre = nombre;
             this.velocidad = velocidad;
             this.temperatura = temperatura;
             this.combustible = combustible;
-            this.velocidadMaximaExcedida += cuandoVelocidadMaximaExcedida;
-            this.temperaturaMaximaExcedida += cuandoTemperaturaMaximaExcedida;
-            this.combustibleMinimoExcedido += cuandoCombustibleMinimoExcedido;
+
         }
 
         public void incVelocidad()
@@ -156,22 +155,6 @@ namespace Hada
 
             return cadena;
         }
-
-        private void cuandoVelocidadMaximaExcedida(object sender, VelocidadMaximaExcedidaArgs args)
-        {
-            Console.WriteLine("Velocidad máxima excedida");
-        }
-
-        private void cuandoTemperaturaMaximaExcedida(object sender, TemperaturaMaximaExcedidaArgs args)
-        {
-            Console.WriteLine("Temperatura máxima excedida");
-        }
-
-        private void cuandoCombustibleMinimoExcedido(object sender, CombustibleMinimoExcedidoArgs args)
-        {
-            Console.WriteLine("Combustible minimo excedido");
-        }
-
 
 
     }
