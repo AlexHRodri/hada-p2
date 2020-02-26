@@ -115,6 +115,38 @@ namespace Hada
             this.combustible = this.combustible - rand.Next(1, 6);
         }
 
+        public bool todoOk()
+        {
+            bool check = false;
+
+            if(this.combustible >= minCombustible && this.temperatura <= maxTemperatura)
+            {
+                check = true;
+            }
+
+            return check;
+        }
+
+        public void mover()
+        {
+            if(this.todoOk() == true)
+            {
+                this.incVelocidad();
+                this.incTemperatura();
+                this.decCombustible();
+            }
+        }
+
+
+        override
+        public string ToString()
+        {
+            string cadena = "";
+
+            _ = "[" + nombre + "] Velocidad: " + velocidad + "; Temperatura: " + temperatura + "; Combustible: " + combustible + "%; Ok: " + todoOk();
+
+        }
+
 
 
 
