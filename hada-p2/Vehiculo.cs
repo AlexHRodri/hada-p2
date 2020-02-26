@@ -29,7 +29,7 @@ namespace Hada
                 {
                     if (value > maxVelocidad)
                     {
-
+                        velocidadMaximaExcedida(this, new VelocidadMaximaExcedidaArgs(value));
                     }
                     else
                     {
@@ -53,7 +53,7 @@ namespace Hada
             {
                 if (value > maxTemperatura)
                 {
-
+                    temperaturaMaximaExcedida(this, new TemperaturaMaximaExcedidaArgs(value));
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace Hada
                 {
                     if (value < minCombustible)
                     {
-
+                        combustibleMinimoExcedido(this, new CombustibleMinimoExcedidoArgs(value));
                     }
                     else if (value < 0)
                     {
@@ -92,12 +92,21 @@ namespace Hada
             }
         }
 
+        public event EventHandler<VelocidadMaximaExcedidaArgs> velocidadMaximaExcedida;
+
+        public event EventHandler<TemperaturaMaximaExcedidaArgs> temperaturaMaximaExcedida;
+
+        public event EventHandler<CombustibleMinimoExcedidoArgs> combustibleMinimoExcedido;
+
         public Vehiculo(string nombre, int velocidad, int temperatura, int combustible)
         {
             this.nombre = nombre;
             this.velocidad = velocidad;
             this.temperatura = temperatura;
             this.combustible = combustible;
+            this.velocidadMaximaExcedida += cuandoVelocidadMaximaExcedida;
+            this.temperaturaMaximaExcedida += cuandoTemperaturaMaximaExcedida;
+            this.combustibleMinimoExcedido += cuandoCombustibleMinimoExcedido;
         }
 
         public void incVelocidad()
@@ -145,13 +154,59 @@ namespace Hada
 
             _ = "[" + nombre + "] Velocidad: " + velocidad + "; Temperatura: " + temperatura + "; Combustible: " + combustible + "%; Ok: " + todoOk();
 
+            return cadena;
+        }
+
+        private void cuandoVelocidadMaximaExcedida(object sender, VelocidadMaximaExcedidaArgs args)
+        {
+            Console.WriteLine("Velocidad máxima excedida");
+        }
+
+        private void cuandoTemperaturaMaximaExcedida(object sender, TemperaturaMaximaExcedidaArgs args)
+        {
+            Console.WriteLine("Temperatura máxima excedida");
+        }
+
+        private void cuandoCombustibleMinimoExcedido(object sender, CombustibleMinimoExcedidoArgs args)
+        {
+            Console.WriteLine("Combustible minimo excedido");
         }
 
 
 
-
-
-
-
     }
+
+    public class VelocidadMaximaExcedidaArgs : EventArgs
+    {
+        public int velocidad { get; set; }
+
+        public VelocidadMaximaExcedidaArgs (int vel)
+        {
+            this.velocidad = vel;
+        }
+    }
+
+
+    public class TemperaturaMaximaExcedidaArgs
+    {
+        public int temperatura { get; set; }
+
+        public TemperaturaMaximaExcedidaArgs(int temp)
+        {
+            this.temperatura = temp;
+        }
+    }
+
+   
+    public class CombustibleMinimoExcedidoArgs
+    {
+        public int combustible { get; set; }
+
+        public CombustibleMinimoExcedidoArgs(int comb)
+        {
+            this.combustible = comb;
+        }
+    }
+
+
 }
