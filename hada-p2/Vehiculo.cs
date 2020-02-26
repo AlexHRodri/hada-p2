@@ -170,7 +170,7 @@ namespace Hada
     }
 
 
-    public class TemperaturaMaximaExcedidaArgs
+    public class TemperaturaMaximaExcedidaArgs : EventArgs
     {
         public int temperatura { get; set; }
 
@@ -181,7 +181,7 @@ namespace Hada
     }
 
    
-    public class CombustibleMinimoExcedidoArgs
+    public class CombustibleMinimoExcedidoArgs : EventArgs
     {
         public int combustible { get; set; }
 
