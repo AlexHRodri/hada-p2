@@ -68,5 +68,35 @@ namespace Hada
             }
         }
 
+        public List<Vehiculo> getCochesExcedenLimiteVelocidad()
+        {
+            List<Vehiculo> excedentes = new List<Vehiculo>();
+
+            for(int i = 0; i < this.capacidad; i++)
+            {
+                if(vehiculos[i].velocidadMaximaExcedida)
+            }
+        }
+
+        public List<Vehiculo> getCochesExcedenLimiteTemperatura()
+        {
+            List<Vehiculo> excedentes = new List<Vehiculo>();
+
+            for (int i = 0; i < this.capacidad; i++)
+            {
+                if (vehiculos[i].velocidadMaximaExcedida)
+            }
+        }
+
+        public List<Vehiculo> getCochesExcedenMinimoCombustible()
+        {
+            List<Vehiculo> excedentes = new List<Vehiculo>();
+
+            for (int i = 0; i < this.capacidad; i++)
+            {
+                if (vehiculos[i].velocidadMaximaExcedida)
+            }
+        }
+
     }
 }
