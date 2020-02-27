@@ -98,5 +98,20 @@ namespace Hada
             }
         }
 
+      override
+      public string ToString()
+        {
+            string cadena = "";
+
+            cadena = "[AUTOVÍA] Exceso velocidad: " + this.getCochesExcedenLimiteVelocidad().Count + "; Exceso temperatura: " + this.getCochesExcedenLimiteTemperatura().Count + "; Déficit combustible: " + this.getCochesExcedenMinimoCombustible().Count + "\n";
+
+            for(int i = 0; i < this.capacidad; i++)
+            {
+                cadena += vehiculos[i].ToString();
+            }
+
+            return cadena;
+        }
+
     }
 }

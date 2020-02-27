@@ -151,7 +151,7 @@ namespace Hada
         {
             string cadena = "";
 
-            _ = "[" + nombre + "] Velocidad: " + velocidad + "; Temperatura: " + temperatura + "; Combustible: " + combustible + "%; Ok: " + todoOk();
+            _ = "[" + nombre + "] Velocidad: " + velocidad + "; Temperatura: " + temperatura + "; Combustible: " + combustible + "%; Ok: " + todoOk() + "\n";
 
             return cadena;
         }
