@@ -13,17 +13,29 @@ namespace Hada
    
         private void cuandoVelocidadMaximaExcedida(object sender, VelocidadMaximaExcedidaArgs args)
         {
-            Console.WriteLine("Velocidad máxima excedida");
+            Vehiculo v = (Hada.Vehiculo) sender;
+            Console.WriteLine("¡¡Velocidad máxima excedida!!");
+            Console.WriteLine("Vehiculo: " + v.nombre);
+            Console.WriteLine("Velocidad: " + args.velocidad + "km/h");
         }
 
         private void cuandoTemperaturaMaximaExcedida(object sender, TemperaturaMaximaExcedidaArgs args)
         {
-            Console.WriteLine("Temperatura máxima excedida");
+            Vehiculo v = (Hada.Vehiculo)sender;
+
+            Console.WriteLine("¡¡Temperatura máxima excedida!!");
+            Console.WriteLine("Vehiculo: " + v.nombre);
+            Console.WriteLine("Temperatura: " + args.temperatura + "ºC");
         }
 
         private void cuandoCombustibleMinimoExcedido(object sender, CombustibleMinimoExcedidoArgs args)
         {
-            Console.WriteLine("Combustible minimo excedido");
+            Vehiculo v = (Hada.Vehiculo)sender;
+
+            Console.WriteLine("¡¡Combustible mínimo excedido!!");
+            Console.WriteLine("Vehiculo: " + v.nombre);
+            Console.WriteLine("Combustible: " + args.combustible + "%");
+
         }
 
         public Autovia(int nc)
