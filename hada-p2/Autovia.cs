@@ -10,31 +10,48 @@ namespace Hada
     {
         private int capacidad { get; set; }
         List<Vehiculo> vehiculos { get; set; }
-   
+        List<Vehiculo> exclimitvel { get; set; }
+        List<Vehiculo> exclimittemp { get; set; }
+        List<Vehiculo> exclimitcomb { get; set; }
+
+
         private void cuandoVelocidadMaximaExcedida(object sender, VelocidadMaximaExcedidaArgs args)
         {
+            exclimitvel = new List<Vehiculo>();
+
             Vehiculo v = (Hada.Vehiculo) sender;
             Console.WriteLine("¡¡Velocidad máxima excedida!!");
             Console.WriteLine("Vehiculo: " + v.nombre);
             Console.WriteLine("Velocidad: " + args.velocidad + "km/h");
+
+            exclimitvel.Add(v);
+
         }
 
         private void cuandoTemperaturaMaximaExcedida(object sender, TemperaturaMaximaExcedidaArgs args)
         {
+            exclimittemp = new List<Vehiculo>();
+
             Vehiculo v = (Hada.Vehiculo)sender;
 
             Console.WriteLine("¡¡Temperatura máxima excedida!!");
             Console.WriteLine("Vehiculo: " + v.nombre);
             Console.WriteLine("Temperatura: " + args.temperatura + "ºC");
+
+            exclimittemp.Add(v);
         }
 
         private void cuandoCombustibleMinimoExcedido(object sender, CombustibleMinimoExcedidoArgs args)
         {
+            exclimitcomb = new List<Vehiculo>();
+
             Vehiculo v = (Hada.Vehiculo)sender;
 
             Console.WriteLine("¡¡Combustible mínimo excedido!!");
             Console.WriteLine("Vehiculo: " + v.nombre);
             Console.WriteLine("Combustible: " + args.combustible + "%");
+
+            exclimitcomb.Add(v);
 
         }
 
@@ -82,32 +99,19 @@ namespace Hada
 
         public List<Vehiculo> getCochesExcedenLimiteVelocidad()
         {
-            List<Vehiculo> excedentes = new List<Vehiculo>();
-
-            for(int i = 0; i < this.capacidad; i++)
-            {
-                if(vehiculos[i].velocidadMaximaExcedida)
-            }
+            return this.exclimitvel;
         }
 
         public List<Vehiculo> getCochesExcedenLimiteTemperatura()
         {
-            List<Vehiculo> excedentes = new List<Vehiculo>();
+            return this.exclimittemp;
 
-            for (int i = 0; i < this.capacidad; i++)
-            {
-                if (vehiculos[i].velocidadMaximaExcedida)
-            }
         }
 
         public List<Vehiculo> getCochesExcedenMinimoCombustible()
         {
-            List<Vehiculo> excedentes = new List<Vehiculo>();
+            return this.exclimitcomb;
 
-            for (int i = 0; i < this.capacidad; i++)
-            {
-                if (vehiculos[i].velocidadMaximaExcedida)
-            }
         }
 
       override
