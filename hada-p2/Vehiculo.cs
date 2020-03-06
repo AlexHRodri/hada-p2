@@ -23,79 +23,89 @@ namespace Hada
 
         public string nombre { get; private set; }
 
+        private int v;
+
         private int velocidad
         {
             get
             {
-                return velocidad;
+                return v;
             }
 
             set
             {
+                v = value;
+
                 if (value > maxVelocidad || value < 0)
                 {
+                    
+                    if(value < 0)
+                    {
+                        v = 0;
+                    }
+
                     if (value > maxVelocidad)
                     {
                         velocidadMaximaExcedida(this, new VelocidadMaximaExcedidaArgs(value));
                     }
-                    else
-                    {
-                        velocidad = 0;
-                    }
                 }
-                else
-                {
-                    velocidad = value;
-                }
+               
+
             }
         }
+
+        private int t;
+
         private int temperatura
         {
             get
             {
-                return temperatura;
+                return t;
             }
 
             set
             {
+                t = value;
+
                 if (value > maxTemperatura)
                 {
                     temperaturaMaximaExcedida(this, new TemperaturaMaximaExcedidaArgs(value));
                 }
-                else
-                {
-                    temperatura = value;
-                }
+                
             }
         }
+
+        private int c;
+
         private int combustible
         {
             get
             {
-                return velocidad;
+                return c;
             }
 
             set
             {
+                c = value;
+
                 if (value < minCombustible || value < 0 || value > 100)
                 {
+                   
+                    if (value < 0)
+                    {
+                        c = 0;
+                    }
+                    if (value > 100)
+                    {
+                        c = 100;
+                    }
+
                     if (value < minCombustible)
                     {
                         combustibleMinimoExcedido(this, new CombustibleMinimoExcedidoArgs(value));
                     }
-                    else if (value < 0)
-                    {
-                        combustible = 0;
-                    }
-                    else
-                    {
-                        combustible = 100;
-                    }
                 }
-                else
-                {
-                    combustible = value;
-                }
+               
             }
         }
 
@@ -146,14 +156,16 @@ namespace Hada
         }
 
 
-        override
-        public string ToString()
-        {
-            string cadena = "";
 
-            _ = "[" + nombre + "] Velocidad: " + velocidad + " km/h; Temperatura: " + temperatura + " ºC; Combustible: " + combustible + " %; Ok: " + todoOk() + "\n";
+        public override string ToString()
+        {
+
+            string cadena="";
+
+           cadena = "[" + this.nombre + "] Velocidad: " + this.velocidad + " km/h; Temperatura: " + this.temperatura + " ºC; Combustible: " + this.combustible + " %; Ok: " + todoOk() + "\n";
 
             return cadena;
+
         }
 
 

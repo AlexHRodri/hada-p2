@@ -10,14 +10,16 @@ namespace Hada
     {
         private int capacidad { get; set; }
         List<Vehiculo> vehiculos { get; set; }
-        List<Vehiculo> exclimitvel { get; set; }
-        List<Vehiculo> exclimittemp { get; set; }
-        List<Vehiculo> exclimitcomb { get; set; }
+        List<Vehiculo> exclimitvel { get; set; } = new List<Vehiculo>();
+
+        List<Vehiculo> exclimittemp { get; set; } = new List<Vehiculo>();
+        List<Vehiculo> exclimitcomb { get; set; } = new List<Vehiculo>();
+
 
 
         private void cuandoVelocidadMaximaExcedida(object sender, VelocidadMaximaExcedidaArgs args)
         {
-            exclimitvel = new List<Vehiculo>();
+            
 
             Vehiculo v = (Hada.Vehiculo) sender;
             Console.WriteLine("¡¡Velocidad máxima excedida!!");
@@ -30,7 +32,6 @@ namespace Hada
 
         private void cuandoTemperaturaMaximaExcedida(object sender, TemperaturaMaximaExcedidaArgs args)
         {
-            exclimittemp = new List<Vehiculo>();
 
             Vehiculo v = (Hada.Vehiculo)sender;
 
@@ -43,13 +44,12 @@ namespace Hada
 
         private void cuandoCombustibleMinimoExcedido(object sender, CombustibleMinimoExcedidoArgs args)
         {
-            exclimitcomb = new List<Vehiculo>();
 
             Vehiculo v = (Hada.Vehiculo)sender;
 
             Console.WriteLine("¡¡Combustible mínimo excedido!!");
             Console.WriteLine("Vehiculo: " + v.nombre);
-            Console.WriteLine("Combustible: " + args.combustible + "%");
+            Console.WriteLine("Combustible: 0%");
 
             exclimitcomb.Add(v);
 
@@ -77,11 +77,12 @@ namespace Hada
         {
             bool check = false;
 
-            for(int i = 0; i < this.capacidad ; i++)
+            for(int j = 0; j < this.capacidad ; j++)
             {
-                if (vehiculos[i].todoOk() == true)
+                if (vehiculos[j].todoOk() == true)
                 {
-                    vehiculos[i].mover();
+                    vehiculos[j].mover();
+                    
                     check = true;
                 }
             }
@@ -93,24 +94,46 @@ namespace Hada
         {
             while (this.moverCoches() == true)
             {
-                this.moverCoches();
             }
+
+            return;
         }
 
         public List<Vehiculo> getCochesExcedenLimiteVelocidad()
         {
-            return this.exclimitvel;
+            if(this.exclimitvel != null)
+            {
+                return this.exclimitvel;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Vehiculo> getCochesExcedenLimiteTemperatura()
         {
-            return this.exclimittemp;
+            if (this.exclimittemp != null)
+            {
+                return this.exclimittemp;
+            }
+            else
+            {
+                return null;
+            }
 
         }
 
         public List<Vehiculo> getCochesExcedenMinimoCombustible()
         {
-            return this.exclimitcomb;
+            if (this.exclimitcomb != null)
+            {
+                return this.exclimitcomb;
+            }
+            else
+            {
+                return null;
+            }
 
         }
 
@@ -118,8 +141,37 @@ namespace Hada
       public string ToString()
         {
             string cadena = "";
+            int contvec, conttemp, contcomb;
 
-            cadena = "[AUTOVÍA] Exceso velocidad: " + this.getCochesExcedenLimiteVelocidad().Count + "; Exceso temperatura: " + this.getCochesExcedenLimiteTemperatura().Count + "; Déficit combustible: " + this.getCochesExcedenMinimoCombustible().Count + "\n";
+            if(this.getCochesExcedenLimiteTemperatura() == null)
+            {
+                contvec = 0;
+            }
+            else
+            {
+                contvec = this.getCochesExcedenLimiteVelocidad().Count;
+            }
+
+            if(this.getCochesExcedenLimiteVelocidad() == null)
+            {
+                conttemp = 0;
+            }
+            else
+            {
+                conttemp = this.getCochesExcedenLimiteTemperatura().Count;
+            }
+
+            if (this.getCochesExcedenMinimoCombustible() == null)
+            {
+                contcomb = 0;
+            }
+            else
+            {
+                contcomb = this.getCochesExcedenMinimoCombustible().Count;
+            }
+
+
+            cadena = "[AUTOVÍA] Exceso velocidad: " + contvec + "; Exceso temperatura: " + conttemp + "; Déficit combustible: " + contcomb + "\n";
 
             for(int i = 0; i < this.capacidad; i++)
             {
