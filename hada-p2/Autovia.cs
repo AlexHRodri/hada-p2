@@ -25,8 +25,11 @@ namespace Hada
             Console.WriteLine("¡¡Velocidad máxima excedida!!");
             Console.WriteLine("Vehiculo: " + v.nombre);
             Console.WriteLine("Velocidad: " + args.velocidad + "km/h");
-
-            exclimitvel.Add(v);
+           
+            if(exclimitvel.Contains(v) == false)
+            {
+                exclimitvel.Add(v);
+            }
 
         }
 
@@ -38,8 +41,13 @@ namespace Hada
             Console.WriteLine("¡¡Temperatura máxima excedida!!");
             Console.WriteLine("Vehiculo: " + v.nombre);
             Console.WriteLine("Temperatura: " + args.temperatura + "ºC");
+           
+            if (exclimittemp.Contains(v) == false)
+            {
+                exclimittemp.Add(v);
 
-            exclimittemp.Add(v);
+            }
+
         }
 
         private void cuandoCombustibleMinimoExcedido(object sender, CombustibleMinimoExcedidoArgs args)
@@ -51,7 +59,10 @@ namespace Hada
             Console.WriteLine("Vehiculo: " + v.nombre);
             Console.WriteLine("Combustible: 0%");
 
-            exclimitcomb.Add(v);
+            if(exclimitcomb.Contains(v) == false)
+            {
+                exclimitcomb.Add(v);
+            }
 
         }
 
