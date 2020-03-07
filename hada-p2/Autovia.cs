@@ -57,7 +57,7 @@ namespace Hada
 
             Console.WriteLine("¡¡Combustible mínimo excedido!!");
             Console.WriteLine("Vehiculo: " + v.nombre);
-            Console.WriteLine("Combustible: 0%");
+            Console.WriteLine("Combustible: " + args.combustible + "%");
 
             if(exclimitcomb.Contains(v) == false)
             {
